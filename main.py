@@ -1,9 +1,6 @@
 # main.py
-# UrbanIQ AI - Main Application Entry Point
-
 import streamlit as st
 
-# Page config - MUST be first streamlit command
 st.set_page_config(
     page_title="UrbanIQ AI",
     page_icon="🏙️",
@@ -11,14 +8,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Import pages
 from dashboard.home import show_home
 from dashboard.map_page import show_map
 from dashboard.rankings import show_rankings
 from dashboard.analytics import show_analytics
 from dashboard.ai_advisor import show_ai_advisor
 
-# ── Global CSS ─────────────────────────────────────────────────
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -28,15 +23,21 @@ st.markdown("""
 .stApp { background-color: #0f0f1a; color: #e2e8f0; }
 
 [data-testid="stSidebar"] {
-    background-color: #1e1e2e;
-    border-right: 1px solid #2d2d44;
+    background-color: #1e1e2e !important;
+    border-right: 1px solid #2d2d44 !important;
 }
 
 [data-testid="stSidebar"] * { color: #e2e8f0 !important; }
 
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
+[data-testid="collapsedControl"] {
+    display: block !important;
+    visibility: visible !important;
+    color: white !important;
+    background: #1e1e2e !important;
+}
+
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
 
 [data-testid="stMetric"] {
     background: #1e1e2e;
@@ -58,7 +59,7 @@ header {visibility: hidden;}
 
 .stButton > button {
     background: linear-gradient(135deg, #2563eb, #7c3aed);
-    color: white;
+    color: white !important;
     border: none;
     border-radius: 8px;
     padding: 10px 24px;
@@ -108,17 +109,21 @@ header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
-# ── Sidebar Navigation ──────────────────────────────────────────
+# ── Sidebar ─────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("""
-    <div style="text-align:center; padding: 20px 0;">
-        <div style="font-size:40px;">🏙️</div>
-        <div style="font-size:20px; font-weight:700; color:#fff;">UrbanIQ AI</div>
-        <div style="font-size:12px; color:#94a3b8;">Business Location Intelligence</div>
+    <div style="text-align:center; padding:20px 0 10px 0;">
+        <div style="font-size:42px;">🏙️</div>
+        <div style="font-size:20px; font-weight:700; color:#fff;
+                    margin-top:8px;">UrbanIQ AI</div>
+        <div style="font-size:11px; color:#64748b; margin-top:4px;">
+            Business Location Intelligence
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<hr style='border-color:#2d2d44;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='border-color:#2d2d44; margin:12px 0;'>",
+                unsafe_allow_html=True)
 
     page = st.selectbox(
         "Navigate",
@@ -126,16 +131,49 @@ with st.sidebar:
         label_visibility="collapsed"
     )
 
-    st.markdown("<hr style='border-color:#2d2d44;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='border-color:#2d2d44; margin:12px 0;'>",
+                unsafe_allow_html=True)
 
     st.markdown("""
-    <div style="font-size:12px; color:#64748b; text-align:center; padding:10px 0;">
-        Powered by UrbanIQ Engine v1.0<br>
-        NCR · 30 Areas · 8 Business Types
+    <div style="background:#0f0f1a; border-radius:10px;
+                padding:14px; margin-bottom:12px;">
+        <div style="font-size:11px; color:#64748b;
+                    font-weight:600; margin-bottom:10px;
+                    letter-spacing:1px;">PLATFORM STATS</div>
+        <div style="display:flex; justify-content:space-between;
+                    margin-bottom:8px;">
+            <span style="font-size:12px; color:#94a3b8;">📍 Areas</span>
+            <span style="font-size:12px; color:#60a5fa;
+                         font-weight:700;">60</span>
+        </div>
+        <div style="display:flex; justify-content:space-between;
+                    margin-bottom:8px;">
+            <span style="font-size:12px; color:#94a3b8;">🏢 Business Types</span>
+            <span style="font-size:12px; color:#60a5fa;
+                         font-weight:700;">8</span>
+        </div>
+        <div style="display:flex; justify-content:space-between;
+                    margin-bottom:8px;">
+            <span style="font-size:12px; color:#94a3b8;">🌆 Cities</span>
+            <span style="font-size:12px; color:#60a5fa;
+                         font-weight:700;">5</span>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+            <span style="font-size:12px; color:#94a3b8;">📊 Data Points</span>
+            <span style="font-size:12px; color:#60a5fa;
+                         font-weight:700;">900+</span>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
-# ── Route to Pages ──────────────────────────────────────────────
+    st.markdown("""
+    <div style="font-size:11px; color:#64748b;
+                text-align:center; padding:8px 0;">
+        UrbanIQ Engine v2.0 · NCR India
+    </div>
+    """, unsafe_allow_html=True)
+
+# ── Route Pages ─────────────────────────────────────────────────
 if page == "🏠 Home":
     show_home()
 elif page == "🗺️ Map":
