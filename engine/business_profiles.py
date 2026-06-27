@@ -1,18 +1,13 @@
 # engine/business_profiles.py
-# Defines weight profiles for each business type
-# Weights must always add up to 1.0
-
 BUSINESS_PROFILES = {
     "cafe": {
         "display_name": "☕ Cafe",
         "weights": {
-            "pop_norm":         0.20,
-            "metro_norm":       0.20,
-            "office_norm":      0.20,
-            "income_norm":      0.10,
-            "sentiment_norm":   0.15,
-            "competition_norm": 0.10,
-            "rent_norm":        0.05,
+            "office_norm":      0.30,
+            "metro_norm":       0.25,
+            "sentiment_norm":   0.20,
+            "competition_norm": 0.15,
+            "rent_norm":        0.10,
         },
         "description": "Cafes thrive near offices and metro stations with high footfall.",
         "ideal_for": ["office areas", "metro hubs", "college zones"]
@@ -21,13 +16,11 @@ BUSINESS_PROFILES = {
     "restaurant": {
         "display_name": "🍕 Restaurant",
         "weights": {
-            "pop_norm":         0.25,
+            "pop_norm":         0.30,
+            "sentiment_norm":   0.25,
             "income_norm":      0.20,
-            "sentiment_norm":   0.20,
-            "metro_norm":       0.15,
-            "competition_norm": 0.10,
-            "rent_norm":        0.05,
-            "growth_norm":      0.05,
+            "competition_norm": 0.15,
+            "rent_norm":        0.10,
         },
         "description": "Restaurants need high population, good income and positive area sentiment.",
         "ideal_for": ["residential zones", "market areas", "entertainment hubs"]
@@ -36,10 +29,9 @@ BUSINESS_PROFILES = {
     "gym": {
         "display_name": "🏋 Gym",
         "weights": {
-            "pop_norm":         0.25,
-            "income_norm":      0.20,
+            "pop_norm":         0.30,
+            "competition_norm": 0.30,
             "metro_norm":       0.20,
-            "competition_norm": 0.15,
             "rent_norm":        0.10,
             "growth_norm":      0.10,
         },
@@ -50,12 +42,11 @@ BUSINESS_PROFILES = {
     "pharmacy": {
         "display_name": "💊 Pharmacy",
         "weights": {
+            "hospitals_norm":   0.35,
             "pop_norm":         0.30,
-            "hospitals_norm":   0.25,
             "competition_norm": 0.20,
-            "metro_norm":       0.10,
             "rent_norm":        0.10,
-            "sentiment_norm":   0.05,
+            "metro_norm":       0.05,
         },
         "description": "Pharmacies need high population density and proximity to hospitals.",
         "ideal_for": ["hospital zones", "residential areas", "market areas"]
@@ -64,11 +55,10 @@ BUSINESS_PROFILES = {
     "grocery_store": {
         "display_name": "🛒 Grocery Store",
         "weights": {
-            "pop_norm":         0.35,
+            "pop_norm":         0.40,
             "competition_norm": 0.25,
-            "rent_norm":        0.15,
+            "rent_norm":        0.20,
             "growth_norm":      0.15,
-            "sentiment_norm":   0.10,
         },
         "description": "Grocery stores need dense residential population and low competition.",
         "ideal_for": ["residential colonies", "new townships", "growing areas"]
@@ -77,10 +67,9 @@ BUSINESS_PROFILES = {
     "coworking": {
         "display_name": "💻 Co-working Space",
         "weights": {
-            "office_norm":      0.25,
-            "metro_norm":       0.25,
+            "office_norm":      0.35,
+            "metro_norm":       0.30,
             "income_norm":      0.20,
-            "sentiment_norm":   0.15,
             "competition_norm": 0.10,
             "rent_norm":        0.05,
         },
@@ -91,12 +80,11 @@ BUSINESS_PROFILES = {
     "clothing_store": {
         "display_name": "👕 Clothing Store",
         "weights": {
+            "income_norm":      0.35,
+            "sentiment_norm":   0.25,
             "pop_norm":         0.20,
-            "income_norm":      0.25,
-            "sentiment_norm":   0.20,
-            "metro_norm":       0.15,
             "competition_norm": 0.10,
-            "rent_norm":        0.10,
+            "metro_norm":       0.10,
         },
         "description": "Clothing stores need high income shoppers and good footfall areas.",
         "ideal_for": ["market areas", "malls", "high income zones"]
@@ -105,12 +93,11 @@ BUSINESS_PROFILES = {
     "bookstore": {
         "display_name": "📚 Bookstore",
         "weights": {
-            "schools_norm":     0.25,
+            "schools_norm":     0.35,
+            "competition_norm": 0.25,
             "income_norm":      0.20,
-            "competition_norm": 0.20,
-            "sentiment_norm":   0.15,
-            "metro_norm":       0.10,
             "rent_norm":        0.10,
+            "sentiment_norm":   0.10,
         },
         "description": "Bookstores need educated population, schools nearby and low competition.",
         "ideal_for": ["educational zones", "residential areas", "college hubs"]
