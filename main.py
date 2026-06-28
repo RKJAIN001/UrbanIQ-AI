@@ -66,8 +66,15 @@ section[data-testid="stSidebar"] {
 [data-testid="collapsedControl"] {
     display: flex !important;
     visibility: visible !important;
-    color: white !important;
     background-color: #0a0f1e !important;
+    border-right: 1px solid #1e293b !important;
+}
+[data-testid="collapsedControl"] svg {
+    fill: #0ea5e9 !important;
+    color: #0ea5e9 !important;
+}
+[data-testid="collapsedControl"]:hover {
+    background-color: #1e293b !important;
 }
 
 /* ── Metrics ── */
