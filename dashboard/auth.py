@@ -89,7 +89,6 @@ def show_auth():
         z-index: 0;
     }
 
-    /* Tab styling */
     .stTabs [data-baseweb="tab-list"] {
         background: #0a0f1e !important;
         border-radius: 12px !important;
@@ -115,7 +114,6 @@ def show_auth():
         padding-top: 24px !important;
     }
 
-    /* Input styling */
     .stTextInput > div > div > input {
         background: #0a0f1e !important;
         border: 1px solid #1e293b !important;
@@ -155,7 +153,6 @@ def show_auth():
     col1, col2, col3 = st.columns([1, 1.2, 1])
 
     with col2:
-        # Logo
         st.markdown("""
         <div style="text-align:center; margin-bottom:32px;">
             <div style="
@@ -176,7 +173,6 @@ def show_auth():
         </div>
         """, unsafe_allow_html=True)
 
-        # Auth Box
         st.markdown("""
         <div style="
             background: #0a0f1e;
@@ -215,13 +211,16 @@ def show_auth():
 
             st.markdown("<br>", unsafe_allow_html=True)
 
-            if st.button("🚀 Sign In", use_container_width=True, key="login_btn"):
+            if st.button("🚀 Sign In",
+                         use_container_width=True,
+                         key="login_btn"):
                 if email and password:
                     user = login_user(email, password)
                     if user:
                         st.session_state.logged_in = True
                         st.session_state.user_name = user[0]
                         st.session_state.show_auth = False
+                        st.session_state["sidebar_open"] = True
                         st.rerun()
                     else:
                         st.error("❌ Invalid email or password")
@@ -275,7 +274,8 @@ def show_auth():
             st.markdown("<br>", unsafe_allow_html=True)
 
             if st.button("✅ Create Account",
-                         use_container_width=True, key="reg_btn"):
+                         use_container_width=True,
+                         key="reg_btn"):
                 if name and email and password and confirm:
                     if password != confirm:
                         st.error("❌ Passwords don't match")
@@ -299,21 +299,24 @@ def show_auth():
 
         st.markdown("</div>", unsafe_allow_html=True)
 
-        # Trust badges
         st.markdown("""
         <div style="display:flex; justify-content:center;
                     gap:24px; margin-top:24px;">
-            <div style="font-size:12px; color:#334155;
-                        display:flex; align-items:center; gap:6px;">
+            <div style="font-size:12px; color:#334155;">
                 🔒 Secure Login
             </div>
-            <div style="font-size:12px; color:#334155;
-                        display:flex; align-items:center; gap:6px;">
+            <div style="font-size:12px; color:#334155;">
                 ⚡ Instant Access
             </div>
-            <div style="font-size:12px; color:#334155;
-                        display:flex; align-items:center; gap:6px;">
+            <div style="font-size:12px; color:#334155;">
                 🆓 Free Forever
             </div>
+        </div>
+        <div style="text-align:center; margin-top:16px;
+                    font-size:12px; color:#334155;">
+            Built with ❤️ by
+            <span style="color:#0ea5e9; font-weight:600;">
+                Rakshit Jain
+            </span>
         </div>
         """, unsafe_allow_html=True)

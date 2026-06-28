@@ -183,7 +183,19 @@ if not st.session_state.logged_in:
         show_landing()
 
 else:
-    # ── Sidebar ────────────────────────────────────────────────
+    # Auto open sidebar after login
+    if st.session_state.get("sidebar_open"):
+        st.session_state.pop("sidebar_open")
+        st.markdown("""
+        <script>
+            setTimeout(function() {
+                var btn = window.parent.document.querySelector(
+                    '[data-testid="collapsedControl"]'
+                );
+                if (btn) btn.click();
+            }, 500);
+        </script>
+        """, unsafe_allow_html=True)
     with st.sidebar:
         st.markdown("""
         <div style="text-align:center; padding:24px 0 16px 0;">
