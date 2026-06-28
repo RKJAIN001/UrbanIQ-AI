@@ -48,20 +48,39 @@ footer                         { display: none !important; }
     max-width: 100% !important;
 }
 
-/* ── Sidebar ── */
+/* ───────────────── Sidebar ───────────────── */
+
 [data-testid="stSidebar"] {
     background-color: #0a0f1e !important;
     border-right: 1px solid #1e293b !important;
 }
+
 [data-testid="stSidebar"] * {
     color: #e2e8f0 !important;
 }
+
 [data-testid="stSidebarNav"] {
     display: none !important;
 }
+
 section[data-testid="stSidebar"] {
     width: 280px !important;
     min-width: 280px !important;
+    max-width: 280px !important;
+}
+
+/* Hide the collapse button completely */
+[data-testid="collapsedControl"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Always keep the sidebar visible */
+section[data-testid="stSidebar"] {
+    transform: translateX(0%) !important;
+    left: 0 !important;
 }
  
 /* ── Metrics ── */
