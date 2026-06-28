@@ -26,15 +26,15 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 * { font-family: 'Inter', sans-serif; }
 
-/* ── Hide ALL Streamlit chrome ── */
-[data-testid="stHeader"]      { display: none !important; }
-[data-testid="stToolbar"]     { display: none !important; }
-[data-testid="stDecoration"]  { display: none !important; }
-[data-testid="stStatusWidget"]{ display: none !important; }
-[data-testid="stMainMenu"]    { display: none !important; }
-.stApp > header               { display: none !important; }
-#MainMenu                     { display: none !important; }
-footer                        { display: none !important; }
+/* ── Hide Streamlit chrome ── */
+[data-testid="stHeader"]       { display: none !important; }
+[data-testid="stToolbar"]      { display: none !important; }
+[data-testid="stDecoration"]   { display: none !important; }
+[data-testid="stStatusWidget"] { display: none !important; }
+[data-testid="stMainMenu"]     { display: none !important; }
+.stApp > header                { display: none !important; }
+#MainMenu                      { display: none !important; }
+footer                         { display: none !important; }
 
 /* ── App base ── */
 .stApp {
@@ -43,7 +43,7 @@ footer                        { display: none !important; }
     color: #e2e8f0 !important;
 }
 .block-container {
-    padding-top: 0 !important;
+    padding-top: 1rem !important;
     padding-bottom: 0 !important;
     max-width: 100% !important;
 }
@@ -52,12 +52,22 @@ footer                        { display: none !important; }
 [data-testid="stSidebar"] {
     background-color: #0a0f1e !important;
     border-right: 1px solid #1e293b !important;
-    min-width: 250px !important;
 }
-[data-testid="stSidebar"] * { color: #e2e8f0 !important; }
-[data-testid="collapsedControl"] {
-    background: #0a0f1e !important;
+[data-testid="stSidebar"] * {
     color: #e2e8f0 !important;
+}
+[data-testid="stSidebarNav"] {
+    display: none !important;
+}
+section[data-testid="stSidebar"] {
+    width: 280px !important;
+    min-width: 280px !important;
+}
+[data-testid="collapsedControl"] {
+    display: flex !important;
+    visibility: visible !important;
+    color: white !important;
+    background-color: #0a0f1e !important;
 }
 
 /* ── Metrics ── */
@@ -73,7 +83,7 @@ footer                        { display: none !important; }
 }
 [data-testid="stMetricValue"] {
     color: #e2e8f0 !important;
-    font-size: 24px !important;
+    font-size: 22px !important;
     font-weight: 700 !important;
 }
 
@@ -169,7 +179,7 @@ if not st.session_state.logged_in:
 else:
     # ── Sidebar ────────────────────────────────────────────────
     with st.sidebar:
-        st.markdown(f"""
+        st.markdown("""
         <div style="text-align:center; padding:24px 0 16px 0;">
             <div style="
                 width:56px; height:56px;
@@ -189,7 +199,8 @@ else:
         </div>
         """, unsafe_allow_html=True)
 
-        st.markdown("""
+        # User info
+        st.markdown(f"""
         <div style="background:#050816; border:1px solid #1e293b;
                     border-radius:10px; padding:12px 14px;
                     margin:0 0 12px 0;">
@@ -198,13 +209,15 @@ else:
             </div>
             <div style="font-size:14px; color:#0ea5e9;
                         font-weight:600; margin-top:2px;">
-        """ + st.session_state.user_name + """
+                {st.session_state.user_name}
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-        st.markdown("<hr style='border-color:#1e293b; margin:0 0 12px 0;'>",
-                    unsafe_allow_html=True)
+        st.markdown(
+            "<hr style='border-color:#1e293b; margin:0 0 12px 0;'>",
+            unsafe_allow_html=True
+        )
 
         page = st.selectbox(
             "Navigate",
@@ -213,8 +226,10 @@ else:
             label_visibility="collapsed"
         )
 
-        st.markdown("<hr style='border-color:#1e293b; margin:12px 0;'>",
-                    unsafe_allow_html=True)
+        st.markdown(
+            "<hr style='border-color:#1e293b; margin:12px 0;'>",
+            unsafe_allow_html=True
+        )
 
         st.markdown("""
         <div style="background:#050816; border:1px solid #1e293b;
