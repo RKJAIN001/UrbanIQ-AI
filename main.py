@@ -76,7 +76,6 @@ section[data-testid="stSidebar"] {
 [data-testid="collapsedControl"]:hover {
     background-color: #1e293b !important;
 }
-
 /* ── Metrics ── */
 [data-testid="stMetric"] {
     background: #0a0f1e !important;
