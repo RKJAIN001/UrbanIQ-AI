@@ -52,10 +52,12 @@ footer                        { display: none !important; }
 [data-testid="stSidebar"] {
     background-color: #0a0f1e !important;
     border-right: 1px solid #1e293b !important;
+    min-width: 250px !important;
 }
 [data-testid="stSidebar"] * { color: #e2e8f0 !important; }
 [data-testid="collapsedControl"] {
-    display: none !important;
+    background: #0a0f1e !important;
+    color: #e2e8f0 !important;
 }
 
 /* ── Metrics ── */
