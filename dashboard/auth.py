@@ -220,7 +220,7 @@ def show_auth():
                         st.session_state.logged_in = True
                         st.session_state.user_name = user[0]
                         st.session_state.show_auth = False
-                        st.session_state["sidebar_open"] = True
+                        
                         st.rerun()
                     else:
                         st.error("❌ Invalid email or password")
