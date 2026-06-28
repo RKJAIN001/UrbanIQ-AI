@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-from dashboard.compare import show_compare
+
 from dashboard.home import show_home
 from dashboard.map_page import show_map
 from dashboard.rankings import show_rankings
@@ -15,44 +15,133 @@ from dashboard.analytics import show_analytics
 from dashboard.ai_advisor import show_ai_advisor
 from dashboard.landing import show_landing
 from dashboard.auth import show_auth
+from dashboard.compare import show_compare
 
-# ── Global CSS ─────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 * { font-family: 'Inter', sans-serif; }
-.stApp { background-color: #0f0f1a; color: #e2e8f0; }
+
+/* ── Hide ALL Streamlit chrome ── */
+[data-testid="stHeader"]      { display: none !important; }
+[data-testid="stToolbar"]     { display: none !important; }
+[data-testid="stDecoration"]  { display: none !important; }
+[data-testid="stStatusWidget"]{ display: none !important; }
+[data-testid="stMainMenu"]    { display: none !important; }
+.stApp > header               { display: none !important; }
+#MainMenu                     { display: none !important; }
+footer                        { display: none !important; }
+
+/* ── App base ── */
+.stApp {
+    margin-top: 0 !important;
+    background-color: #050816 !important;
+    color: #e2e8f0 !important;
+}
+.block-container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: 100% !important;
+}
+
+/* ── Sidebar ── */
 [data-testid="stSidebar"] {
-    background-color: #1e1e2e !important;
-    border-right: 1px solid #2d2d44 !important;
+    background-color: #0a0f1e !important;
+    border-right: 1px solid #1e293b !important;
 }
 [data-testid="stSidebar"] * { color: #e2e8f0 !important; }
 [data-testid="collapsedControl"] {
     display: block !important;
     visibility: visible !important;
-}
-#MainMenu { visibility: hidden; }
-footer { visibility: hidden; }
-[data-testid="stMetric"] {
-    background: #1e1e2e;
-    border: 1px solid #2d2d44;
-    border-radius: 12px;
-    padding: 16px;
-}
-[data-testid="stMetricLabel"] { color: #94a3b8 !important; font-size: 13px !important; }
-[data-testid="stMetricValue"] { color: #fff !important; font-size: 24px !important; font-weight: 700 !important; }
-.stButton > button {
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
     color: white !important;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 24px;
-    font-weight: 600;
-    transition: all 0.3s;
+    background: #0a0f1e !important;
+}
+
+/* ── Metrics ── */
+[data-testid="stMetric"] {
+    background: #0a0f1e !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+}
+[data-testid="stMetricLabel"] {
+    color: #475569 !important;
+    font-size: 12px !important;
+}
+[data-testid="stMetricValue"] {
+    color: #e2e8f0 !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+}
+
+/* ── Buttons ── */
+.stButton > button {
+    background: linear-gradient(135deg, #0ea5e9, #7c3aed) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s !important;
 }
 .stButton > button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+    opacity: 0.9 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(124,58,237,0.4) !important;
+}
+
+/* ── Selectbox ── */
+.stSelectbox > div > div {
+    background: #0a0f1e !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 8px !important;
+    color: #e2e8f0 !important;
+}
+
+/* ── Tabs ── */
+.stTabs [data-baseweb="tab-list"] {
+    background: #0a0f1e !important;
+    border-radius: 12px !important;
+    padding: 4px !important;
+    border: 1px solid #1e293b !important;
+}
+.stTabs [data-baseweb="tab"] {
+    background: transparent !important;
+    border-radius: 8px !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+}
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #0ea5e9, #7c3aed) !important;
+    color: white !important;
+}
+
+/* ── Input ── */
+.stTextInput > div > div > input {
+    background: #0a0f1e !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 10px !important;
+    color: #e2e8f0 !important;
+}
+.stTextInput > div > div > input:focus {
+    border-color: #0ea5e9 !important;
+    box-shadow: 0 0 0 2px rgba(14,165,233,0.15) !important;
+}
+.stTextInput label { color: #94a3b8 !important; }
+
+/* ── Text area ── */
+.stTextArea > div > div > textarea {
+    background: #0a0f1e !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 10px !important;
+    color: #e2e8f0 !important;
+}
+
+/* ── Divider ── */
+hr { border-color: #1e293b !important; }
+
+/* ── Containers ── */
+[data-testid="stVerticalBlock"] > div {
+    background: transparent !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -68,73 +157,99 @@ if "page" not in st.session_state:
     st.session_state.page = "🏠 Home"
 
 # ── Routing Logic ──────────────────────────────────────────────
-
-# Not logged in — show landing or auth
 if not st.session_state.logged_in:
     if st.session_state.show_auth:
         show_auth()
     else:
         show_landing()
 
-# Logged in — show main app with sidebar
 else:
+    # ── Sidebar ────────────────────────────────────────────────
     with st.sidebar:
         st.markdown(f"""
-        <div style="text-align:center; padding:20px 0 10px 0;">
-            <div style="font-size:42px;">🏙️</div>
-            <div style="font-size:20px; font-weight:700; color:#fff;
-                        margin-top:8px;">UrbanIQ AI</div>
-            <div style="font-size:11px; color:#64748b; margin-top:4px;">
+        <div style="text-align:center; padding:24px 0 16px 0;">
+            <div style="
+                width:56px; height:56px;
+                background:linear-gradient(135deg,#0ea5e9,#7c3aed);
+                border-radius:16px;
+                display:flex; align-items:center;
+                justify-content:center;
+                font-size:28px;
+                margin:0 auto 12px auto;
+                box-shadow:0 8px 24px rgba(124,58,237,0.4);
+            ">🏙️</div>
+            <div style="font-size:18px; font-weight:800;
+                        color:#fff;">UrbanIQ AI</div>
+            <div style="font-size:11px; color:#475569; margin-top:4px;">
                 Business Location Intelligence
             </div>
         </div>
         """, unsafe_allow_html=True)
 
         st.markdown("""
-        <div style="background:#0f0f1a; border-radius:8px;
-                    padding:10px 12px; margin:8px 0;">
-            <div style="font-size:11px; color:#64748b;">Logged in as</div>
-            <div style="font-size:14px; color:#60a5fa; font-weight:600;">
-                {name}
+        <div style="background:#050816; border:1px solid #1e293b;
+                    border-radius:10px; padding:12px 14px;
+                    margin:0 0 12px 0;">
+            <div style="font-size:11px; color:#475569;">
+                Logged in as
+            </div>
+            <div style="font-size:14px; color:#0ea5e9;
+                        font-weight:600; margin-top:2px;">
+        """ + st.session_state.user_name + """
             </div>
         </div>
-        """.replace("{name}", st.session_state.user_name),
-        unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
-        st.markdown("<hr style='border-color:#2d2d44; margin:12px 0;'>",
+        st.markdown("<hr style='border-color:#1e293b; margin:0 0 12px 0;'>",
                     unsafe_allow_html=True)
 
         page = st.selectbox(
-    "Navigate",
-    ["🏠 Home", "🗺️ Map", "🏆 Rankings",
-     "📊 Analytics", "🤖 AI Advisor", "⚖️ Compare"],
-    label_visibility="collapsed"
-)
+            "Navigate",
+            ["🏠 Home", "🗺️ Map", "🏆 Rankings",
+             "📊 Analytics", "🤖 AI Advisor", "⚖️ Compare"],
+            label_visibility="collapsed"
+        )
 
-        st.markdown("<hr style='border-color:#2d2d44; margin:12px 0;'>",
+        st.markdown("<hr style='border-color:#1e293b; margin:12px 0;'>",
                     unsafe_allow_html=True)
 
         st.markdown("""
-        <div style="background:#0f0f1a; border-radius:10px;
-                    padding:14px; margin-bottom:12px;">
-            <div style="font-size:11px; color:#64748b;
+        <div style="background:#050816; border:1px solid #1e293b;
+                    border-radius:10px; padding:14px;
+                    margin-bottom:12px;">
+            <div style="font-size:11px; color:#475569;
                         font-weight:600; margin-bottom:10px;
                         letter-spacing:1px;">PLATFORM STATS</div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                <span style="font-size:12px; color:#94a3b8;">📍 Areas</span>
-                <span style="font-size:12px; color:#60a5fa; font-weight:700;">60</span>
+            <div style="display:flex; justify-content:space-between;
+                        margin-bottom:8px;">
+                <span style="font-size:12px; color:#475569;">
+                    📍 Areas
+                </span>
+                <span style="font-size:12px; color:#0ea5e9;
+                             font-weight:700;">60</span>
             </div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                <span style="font-size:12px; color:#94a3b8;">🏢 Business Types</span>
-                <span style="font-size:12px; color:#60a5fa; font-weight:700;">8</span>
+            <div style="display:flex; justify-content:space-between;
+                        margin-bottom:8px;">
+                <span style="font-size:12px; color:#475569;">
+                    🏢 Business Types
+                </span>
+                <span style="font-size:12px; color:#0ea5e9;
+                             font-weight:700;">8</span>
             </div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-                <span style="font-size:12px; color:#94a3b8;">🌆 Cities</span>
-                <span style="font-size:12px; color:#60a5fa; font-weight:700;">5</span>
+            <div style="display:flex; justify-content:space-between;
+                        margin-bottom:8px;">
+                <span style="font-size:12px; color:#475569;">
+                    🌆 Cities
+                </span>
+                <span style="font-size:12px; color:#0ea5e9;
+                             font-weight:700;">5</span>
             </div>
             <div style="display:flex; justify-content:space-between;">
-                <span style="font-size:12px; color:#94a3b8;">📊 Data Points</span>
-                <span style="font-size:12px; color:#60a5fa; font-weight:700;">900+</span>
+                <span style="font-size:12px; color:#475569;">
+                    📊 Data Points
+                </span>
+                <span style="font-size:12px; color:#0ea5e9;
+                             font-weight:700;">900+</span>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -146,13 +261,13 @@ else:
             st.rerun()
 
         st.markdown("""
-        <div style="font-size:11px; color:#64748b;
+        <div style="font-size:11px; color:#334155;
                     text-align:center; padding:8px 0;">
             UrbanIQ Engine v2.0 · NCR India
         </div>
         """, unsafe_allow_html=True)
 
-    # Route pages
+    # ── Page Routing ───────────────────────────────────────────
     if page == "🏠 Home":
         show_home()
     elif page == "🗺️ Map":
