@@ -1,8 +1,5 @@
 # main.py
 import streamlit as st
-# Auto-initialize database
-from setup import initialize
-initialize()
 
 st.set_page_config(
     page_title="UrbanIQ AI",
@@ -10,6 +7,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Auto-initialize database
+from setup import initialize
+initialize()
 
 from dashboard.home import show_home
 from dashboard.map_page import show_map
