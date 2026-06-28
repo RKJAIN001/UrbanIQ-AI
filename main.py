@@ -54,10 +54,7 @@ footer                        { display: none !important; }
 }
 [data-testid="stSidebar"] * { color: #e2e8f0 !important; }
 [data-testid="collapsedControl"] {
-    display: block !important;
-    visibility: visible !important;
-    color: white !important;
-    background: #0a0f1e !important;
+    display: none !important;
 }
 
 /* ── Metrics ── */
