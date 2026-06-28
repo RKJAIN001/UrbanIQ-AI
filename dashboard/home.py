@@ -24,7 +24,7 @@ def show_home():
         background: linear-gradient(135deg, #0a0f1e, #0d1a2e);
         border: 1px solid #1e293b;
         border-radius: 20px;
-        padding: 40px 48px;
+        padding: 32px 40px;
         margin-bottom: 32px;
         position: relative;
         overflow: hidden;
@@ -38,39 +38,6 @@ def show_home():
         background: radial-gradient(circle, #7c3aed11, transparent 70%);
         pointer-events: none;
     }
-    .home-title {
-        font-size: 36px;
-        font-weight: 800;
-        color: #fff;
-        margin: 0 0 8px 0;
-    }
-    .home-sub {
-        font-size: 15px;
-        color: #475569;
-        margin: 0;
-    }
-    .kpi-card {
-        background: #0a0f1e;
-        border: 1px solid #1e293b;
-        border-radius: 16px;
-        padding: 24px;
-        transition: all 0.3s;
-        text-align: center;
-    }
-    .kpi-card:hover {
-        border-color: rgba(14,165,233,0.3);
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(14,165,233,0.08);
-    }
-    .kpi-icon { font-size: 28px; margin-bottom: 8px; }
-    .kpi-value {
-        font-size: 28px; font-weight: 800;
-        background: linear-gradient(135deg, #0ea5e9, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 4px;
-    }
-    .kpi-label { font-size: 12px; color: #475569; letter-spacing: 1px; }
     .top-area-card {
         background: #0a0f1e;
         border: 1px solid #1e293b;
@@ -122,16 +89,23 @@ def show_home():
     user = st.session_state.get("user_name", "User")
     st.markdown(f"""
     <div class="home-header">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; justify-content:space-between;
+                    align-items:center;">
             <div>
-                <div class="home-title">Welcome back, {user}! 👋</div>
-                <div class="home-sub">
+                <div style="font-size:28px; font-weight:800;
+                            color:#fff; margin-bottom:6px;">
+                    Welcome back, {user}! 👋
+                </div>
+                <div style="font-size:14px; color:#475569;">
                     Here's your NCR business intelligence dashboard
                 </div>
             </div>
             <div style="text-align:right;">
-                <div style="font-size:12px; color:#475569;">Last updated</div>
-                <div style="font-size:14px; color:#0ea5e9; font-weight:600;">
+                <div style="font-size:12px; color:#475569;">
+                    Last updated
+                </div>
+                <div style="font-size:14px; color:#0ea5e9;
+                            font-weight:600;">
                     Live Data · 60 Areas
                 </div>
             </div>
@@ -147,24 +121,18 @@ def show_home():
     avg_score  = df["opportunity_score"].mean()
 
     kpis = [
-        ("📍", str(len(df)), "AREAS ANALYZED"),
-        ("🏆", best_area["area"], "BEST AREA"),
-        ("💰", f"₹{avg_rent:,}", "AVG RENT"),
-        ("📈", top_growth["area"], "HIGHEST GROWTH"),
-        ("⚔️", low_comp["area"], "LOW COMPETITION"),
-        ("⭐", f"{avg_score:.1f}", "AVG SCORE"),
+        ("📍", str(len(df)),          "AREAS ANALYZED"),
+        ("🏆", best_area["area"],     "BEST AREA"),
+        ("💰", f"₹{avg_rent:,}",      "AVG RENT"),
+        ("📈", top_growth["area"],    "HIGHEST GROWTH"),
+        ("⚔️", low_comp["area"],      "LOW COMPETITION"),
+        ("⭐", f"{avg_score:.1f}",    "AVG SCORE"),
     ]
 
     cols = st.columns(6)
     for i, (icon, value, label) in enumerate(kpis):
         with cols[i]:
-            st.markdown(f"""
-            <div class="kpi-card">
-                <div class="kpi-icon">{icon}</div>
-                <div class="kpi-value">{value}</div>
-                <div class="kpi-label">{label}</div>
-            </div>
-            """, unsafe_allow_html=True)
+            st.metric(label=f"{icon} {label}", value=value)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -190,18 +158,28 @@ def show_home():
                 <div class="area-city">{row['city']}</div>
                 <div class="score-badge">{row['opportunity_score']}</div>
                 <div style="font-size:11px; color:#475569;
-                            margin-bottom:8px;">OPPORTUNITY SCORE</div>
-                <div class="area-stat">🚇 Metro: {row['metro_distance_km']} km</div>
-                <div class="area-stat">💰 Income: ₹{int(row['avg_income']):,}</div>
-                <div class="area-stat">📈 Growth: {row['growth_rate']}%</div>
-                <div class="area-stat">⚔️ Competition: {row['competition_score']}/10</div>
-                <div class="area-stat">🏠 Rent: ₹{int(row['avg_rent']):,}/mo</div>
+                            margin-bottom:12px;">OPPORTUNITY SCORE</div>
+                <div class="area-stat">
+                    🚇 Metro: {row['metro_distance_km']} km
+                </div>
+                <div class="area-stat">
+                    💰 Income: ₹{int(row['avg_income']):,}
+                </div>
+                <div class="area-stat">
+                    📈 Growth: {row['growth_rate']}%
+                </div>
+                <div class="area-stat">
+                    ⚔️ Competition: {row['competition_score']}/10
+                </div>
+                <div class="area-stat">
+                    🏠 Rent: ₹{int(row['avg_rent']):,}/mo
+                </div>
             </div>
             """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # ── Quick Chart ────────────────────────────────────────────
+    # ── Quick Charts ───────────────────────────────────────────
     st.markdown("""
     <div style="font-size:22px; font-weight:800; color:#fff;
                 margin-bottom:4px;">📊 Quick Insights</div>
@@ -237,7 +215,8 @@ def show_home():
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
-        city_avg = df.groupby("city")["opportunity_score"].mean().reset_index()
+        city_avg = df.groupby("city")[
+            "opportunity_score"].mean().reset_index()
         fig2 = px.bar(
             city_avg,
             x="city",
@@ -289,7 +268,9 @@ def show_home():
             <div class="biz-type-card">
                 <div style="font-size:28px;">{icon}</div>
                 <div style="font-size:12px; color:#e2e8f0;
-                            font-weight:600; margin-top:8px;">{name}</div>
+                            font-weight:600; margin-top:8px;">
+                    {name}
+                </div>
                 <div style="font-size:10px; color:#475569;
                             margin-top:4px;">{desc}</div>
             </div>

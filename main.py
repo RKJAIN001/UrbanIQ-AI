@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="UrbanIQ AI",
     page_icon="🏙️",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
 from dashboard.home import show_home
