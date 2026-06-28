@@ -38,38 +38,39 @@ def show_home():
         background: radial-gradient(circle, #7c3aed11, transparent 70%);
         pointer-events: none;
     }
-    .kpi-card {
-        background: #0a0f1e;
-        border: 1px solid #1e293b;
-        border-radius: 16px;
-        padding: 20px 16px;
-        text-align: center;
-        transition: all 0.3s;
-        height: 120px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+     .kpi-card {
+    background: #0a0f1e;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: all 0.3s;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     }
     .kpi-card:hover {
-        border-color: rgba(14,165,233,0.3);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(14,165,233,0.08);
+    border-color: rgba(14,165,233,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(14,165,233,0.08);
     }
-    .kpi-icon { font-size: 22px; margin-bottom: 6px; }
+    .kpi-icon { font-size: 20px; margin-bottom: 6px; }
     .kpi-value {
-        font-size: 22px; font-weight: 800;
-        background: linear-gradient(135deg, #0ea5e9, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 4px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    font-size: 16px; font-weight: 800;
+    background: linear-gradient(135deg, #0ea5e9, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+    width: 100%;
+    text-align: center;
+    word-break: break-word;
+    line-height: 1.2;
     }
     .kpi-label {
-        font-size: 10px; color: #475569;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
+    font-size: 10px; color: #475569;
+    letter-spacing: 0.5px;
     }
     .top-area-card {
         background: #0a0f1e;
