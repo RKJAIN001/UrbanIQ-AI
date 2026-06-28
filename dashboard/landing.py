@@ -638,32 +638,34 @@ def show_landing():
     </div>
 
     <!-- Footer -->
-<div class="footer">
-    <div class="footer-logo">
-        <div class="nav-logo-icon">🏙️</div>
-        <div>
-            <div style="font-size:14px;font-weight:700;color:#fff;">
-                UrbanIQ AI
-            </div>
-            <div style="font-size:11px;color:#334155;">
-                Business Location Intelligence
+    <div class="footer">
+        <div class="footer-logo">
+            <div class="nav-logo-icon">🏙️</div>
+            <div>
+                <div style="font-size:14px;font-weight:700;color:#fff;">
+                    UrbanIQ AI
+                </div>
+                <div style="font-size:11px;color:#334155;">
+                    Business Location Intelligence
+                </div>
             </div>
         </div>
-    </div>
-    <div style="text-align:center;">
-        <div class="footer-copy">© 2026 UrbanIQ AI · NCR India · v2.0</div>
-        <div style="font-size:13px; color:#475569; margin-top:4px;">
-            Built with ❤️ by 
-            <span style="color:#0ea5e9; font-weight:600;">
-                Rakshit Jain
-            </span>
+        <div style="text-align:center;">
+            <div class="footer-copy">
+                © 2026 UrbanIQ AI · NCR India · v2.0
+            </div>
+            <div style="font-size:13px; color:#475569; margin-top:4px;">
+                Built with ❤️ by
+                <span style="color:#0ea5e9; font-weight:600;">
+                    Rakshit Jain
+                </span>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How it Works</a>
+            <a href="#businesses">Businesses</a>
+            <a href="#testimonials">Reviews</a>
         </div>
     </div>
-    <div class="footer-links">
-        <a href="#features">Features</a>
-        <a href="#how-it-works">How it Works</a>
-        <a href="#businesses">Businesses</a>
-        <a href="#testimonials">Reviews</a>
-    </div>
-</div>
     """, unsafe_allow_html=True)
