@@ -6,9 +6,6 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Database file
-*.db
-
 # VS Code settings
 .vscode/
 
