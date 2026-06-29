@@ -20,6 +20,7 @@ from dashboard.ai_advisor import show_ai_advisor
 from dashboard.landing import show_landing
 from dashboard.auth import show_auth
 from dashboard.compare import show_compare
+from dashboard.executive import show_executive
 
 st.markdown("""
 <style>
@@ -236,7 +237,7 @@ else:
         page = st.selectbox(
             "Navigate",
             ["🏠 Home", "🗺️ Map", "🏆 Rankings",
-             "📊 Analytics", "🤖 AI Advisor", "⚖️ Compare"],
+             "📊 Analytics", "🤖 AI Advisor", "⚖️ Compare", "📋 Executive"],
             label_visibility="collapsed"
         )
 
@@ -312,3 +313,5 @@ else:
         show_ai_advisor()
     elif page == "⚖️ Compare":
         show_compare()
+    elif page == "📋 Executive":
+        show_executive()
