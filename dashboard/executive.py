@@ -139,7 +139,7 @@ def show_executive():
                     📋 Executive Summary
                 </div>
                 <div style="font-size:14px; color:#475569;">
-                    CEO-level business intelligence report
+                     Business intelligence report
                     for NCR location decisions
                 </div>
             </div>
